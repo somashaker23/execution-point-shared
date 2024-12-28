@@ -63,6 +63,6 @@ jobs:
       - name: Publish to GitHub Packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-          run: |
+        run: |
             twine upload --repository-url https://upload.github.com/somashaker23/execution-point-shared dist/* 
         
