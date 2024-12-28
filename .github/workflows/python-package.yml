@@ -61,8 +61,6 @@ jobs:
 
       # Step 4: Publish to GitHub Packages
       - name: Publish to GitHub Packages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         run: |
-            twine upload --repository-url https://upload.github.com/somashaker23/execution-point-shared dist/* 
-        
+          twine upload --repository-url https://api.github.com/repos/${{ github.repository }}/packages/pypi/ --token ${{ secrets.GITHUB_TOKEN }} dist/*
+
