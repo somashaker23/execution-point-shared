@@ -61,9 +61,8 @@ jobs:
 
       # Step 4: Publish to GitHub Packages
       - name: Publish to GitHub Packages
-        run: |
-          pip install twine
-          twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
         env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          run: |
+            twine upload --repository-url https://upload.github.com/somashaker23/execution-point-shared dist/* 
+        
