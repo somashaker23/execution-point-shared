@@ -1,0 +1,67 @@
+name: Python Package CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel pytest
+
+      # Step 4: Install the package
+      - name: Install the shared library
+        run: pip install .
+
+      # Step 5: Run tests
+      - name: Run tests
+        run: pytest tests/
+
+  package:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # Step 3: Build the package
+      - name: Build the Python package
+        run: |
+          python setup.py sdist bdist_wheel
+
+      # Step 4: Publish to GitHub Packages
+      - name: Publish to GitHub Packages
+        run: |
+          pip install twine
+          twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
