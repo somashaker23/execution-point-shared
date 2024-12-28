@@ -62,4 +62,4 @@ jobs:
       # Step 4: Publish to GitHub Packages
       - name: Publish to GitHub Packages
         run: |
-          twine upload --username ${{ secrets.GITHUB_USERNAME }} --password ${{ secrets.GITHUB_TOKEN }} --repository-url https://api.github.com/repos/${{ github.repository }}/packages/pypi/ dist/*
+          twine upload --repository-url https://api.github.com/repos/somashaker23/execution-point-shared/packages/pypi/ --token ${{ secrets.GITHUB_TOKEN }} dist/*
