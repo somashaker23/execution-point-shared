@@ -60,6 +60,7 @@ jobs:
           python setup.py sdist bdist_wheel
 
       # Step 4: Publish to GitHub Packages
-      - name: Publish to GitHub Packages
-        run: |
-          twine upload --repository-url https://api.github.com/repos/somashaker23/execution-point-shared/packages/pypi/ username=${{ secrets.GITHUB_TOKEN }} dist/*
+#      - name: Publish to GitHub Packages
+#        run: |
+#          echo
+#          twine upload --repository-url https://api.github.com/repos/somashaker23/execution-point-shared/packages/pypi/ username=${{ secrets.GITHUB_TOKEN }} dist/*
