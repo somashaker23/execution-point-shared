@@ -55,6 +55,8 @@ jobs:
       # Step 3: Build the package
       - name: Build the Python package
         run: |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel
           python setup.py sdist bdist_wheel
 
       # Step 4: Publish to GitHub Packages
