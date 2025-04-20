@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="job-interface-shared",
     version="0.1.0",
-    packages=find_packages(include=["job_interface", "job_interface.*"]),
+    packages=find_packages(include=["job_interface", "job_interface.*", "db_adapter", "db_adapter.*"]),
     install_requires=[],
     description="Shared library for JobInterface and related utilities.",
     author="Soma Sekhar",
